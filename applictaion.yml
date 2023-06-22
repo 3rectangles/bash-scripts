@@ -1,0 +1,51 @@
+application:
+  mode: stage
+
+outbox:
+  simulation: false
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.180.0.3/rebase_qa10
+    username: bolt_dev
+    password: bolT123
+  jpa:
+    hibernate.ddl-auto: none
+    generate-ddl: true
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        physical_naming_strategy: "com.smartcoin.lender.config.CustomPhysicalNamingStrategy"
+        format_sql: true
+
+  # Producer properties
+  kafka:
+    producer:
+      # bootstrap-servers: "10.190.0.41:9092,10.190.0.42:9092,10.190.0.43:9092"
+      bootstrap-servers: "10.190.0.43:9092"
+      key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+      value-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+      group-id: "consumer-group-id-1"
+
+springdoc:
+  packagesToScan: "com.smartcoin.lender"
+  pathsToMatch: "/**"
+
+topic:
+  name:
+    producer: "topic.spring.test"
+
+# Common Kafka Properties
+auto:
+  create:
+    topics:
+      enable: true
+
+logging:
+  level:
+    root: INFO
+  file:
+    path: .
+    name: logs/application.log

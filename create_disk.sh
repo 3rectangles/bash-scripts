@@ -1,0 +1,1 @@
+gcloud compute images create payvoo-webapp-managed-image-deployed-9133-2023030101 --source-disk payvoo-webapp-9133 --source-disk-zone=asia-south1-a --family=payvoo-webapp --description=9133 --labels=source=payvoo-webapp,environment=qa --force

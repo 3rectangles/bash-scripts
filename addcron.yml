@@ -1,0 +1,15 @@
+- name: cron module demo
+  hosts: '{{ host}}'
+  tasks:
+   - name: "add cronjob"
+     ansible.builtin.cron:
+      name: "add-cron-del-log"
+      state: present
+      minute: "*"
+      hour: "6"
+      day: "*"
+      month: "*"
+      weekday: "*"
+      job: 'sh /data/dist/scripts/del_log.sh'
+  
+
